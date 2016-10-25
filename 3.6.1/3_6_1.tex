@@ -1,0 +1,391 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{graphicx}
+\usepackage{ocgx}
+\usepackage{comment}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{geometry}
+
+\newenvironment{bottompar}{\par\vspace*{\fill}}{\clearpage}
+
+\geometry{top=2cm} % отступ сверху
+\geometry{bottom=1.5cm} % отступ снизу
+\geometry{left=2cm} % отступ справа
+\geometry{right=1cm}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+%% Номера формул
+%%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{alltt}
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+\definecolor{urlcolor}{HTML}{799B03}
+\definecolor{linkcolor}{HTML}{799B03}
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+\begin{document} % конец преамбулы, начало документа
+
+\begin{center}
+\textcolor{black}
+{
+	\large{МОСКОВСКИЙ ФИЗИКО-ТЕХНИЧЕСКИЙ ИНСТИТУТ}
+	\large{(ГОСУДАРСТВЕННЫЙ УНИВЕРСИТЕТ)} \\
+}
+
+\ \\ 
+\ \\
+\ \\
+\ \\
+\ \\
+\Large{КАФЕДРА ОБЩЕЙ ФИЗИКИ} \\
+\ \\
+\ \\
+\ \\
+\ \\
+\large{Лабораторная работа N\textsuperscript{\underline{o}} 3.6.1} \\
+\ \\
+\large
+{
+\ \\
+\textbf{\Large{Спектральный анализ электрических сигналов}}
+}
+
+\graphicspath{{{pictures/}}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\includegraphics[scale=0.5]{mipt}
+\ \\
+\ \\
+\hrule height 0.5pt depth 1pt
+\ \\ 
+\begin{bottompar}
+\ \\
+                              Выполнил: Ушаков Роман, 513 группа \\
+\end{bottompar}
+\end{center}
+
+\newpage
+
+\ \\
+{\bf{Цель работы: }}
+ изучение спектрального состава периодических электрических сигналов.
+
+\ \\
+{\bf{В работе используются: }}
+ анализатор спектра, генератор прямоугольных импульсов, генератор сигналов специальной формы, осциллограф.
+\ \\
+\ \\
+В работе используется спектральный состав периодических электрических сигналов различной формы: последовательности прямоугольных импульсов, последовательности цугов и амплитудно-модулированных гармонических колебаний. Спектры этих сигналов наблюдаются с помощью промышленного анализатора спектра и сравниваются с рассчитанными теоретически.
+\section{Теоретический материал}
+
+\subsection{Анализатор спектра СК4-56}
+\graphicspath{{{pictures/}}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\includegraphics{first}
+
+Восстановление спектрального состава входного сигнала $f(t)$ происходит периодически с некоторым заданным периодом. Линейно нарастающее во времени напряжение с генератора разверстки подается на гетеродин, который генерирует переменное напряжение с частотой пропорциональной этому напряжению, но с постоянной амплитудой.
+
+Исследуемый сигнал $f(t)$ и переменное напряжение подается на смеситель. Для анализа используется только разностный сигнал (сигнал разностной частоты). 
+
+Со смесителя сигнал поступает на фильтр. Таким образом, мы получаем из спектра $f(t)$ переменное напряжение с частотой равной разности частот гетеродина и фильтра ($\nu_{filter}=128$ кГц).
+
+Затем эти колебания подаются на вертикальный вход электронно-лучевой трубки (далее ЭЛТ). Сигнал с генератора развёртки подаётся на горизонтальный вход ЭЛТ. Таким образом, получаем график $A(\nu)$, то есть {\it{фурье-спектр}} сигнала $f(t)$.
+
+
+\subsection{Спектральный анализ}
+
+Рассмотрим функцию вида: \\
+$f(t) = A_{1}*cos(\omega_1*t-\alpha_{1}) + ... + A_{n}*cos(\omega_{n}*t-\alpha_{n})$ \ \\
+или, что то же самое:
+$f(t) = \sum\limits_{i=1}^n A_{i}*cos(\omega_{i}*t-\alpha_{i})$
+\newpage
+Причем $A_{i}, \omega_{i}, \alpha_{i}$ - постоянные константы. Множество пар $(\omega_{i}, A_{i})$  $i \subseteq 1..N$ - называется спектром функции $f(t)$.
+\ \\
+\subsection{Периодические сигналы}
+
+
+Часто встречаемая задача - разложение сложного сигнала на гармонические колебания различных частот $\omega$. Представление периодического сигнала в виде суммы гармонических сигналов называется {\it{разложением в ряд Фурье}}.
+
+Пусть заданная функция $f(t)$ - периодически повторяется с частотой $\Omega_{1}=\frac{2\pi}{T}$, где $T$ - период повторения сигнала $f(t)$
+\ \\
+\ \\
+\ \\
+\includegraphics[scale=1.2]{ps}
+
+Её разложение в ряд Фурье имеет вид: \ \\
+\begin{equation}
+\label{form:furie}	
+	f(t)=\frac{a_{0}}{2}+\sum\limits_{n=1}^{\infty}a_{n}\cos(n\Omega_{1}t)+b_{n}\sin(n\Omega_{1}t) 
+\end{equation}
+
+или
+\begin{equation}
+	f(t)=\frac{a_{0}}{2}+\sum\limits_{n=1}^{\infty}A_{n}\cos(n\Omega_{1}t-\psi_{n}) 
+\label{form:furie_2}
+\end{equation}
+
+$\frac{a_{0}}{2}$ - среднее значение функции $f(t)$. Постоянные $a(n)$ и $b(n)$ определяются выражениями:
+\begin{equation}
+\label{form:a_n}
+	a_{n} = \frac{2}{T}\int\limits_{t_{1}}^{t_{1}+T}f(t)\cos(n\Omega_1t)\, dt
+\end{equation}
+
+\begin{equation}
+	b_{n} = \frac{2}{T}\int\limits_{t_{1}}^{t_{1}+T}f(t)\sin(n\Omega_{1}t)\, dt 
+\label{form:b_n}
+\end{equation}
+
+причем точку $t_{1}$ можно выбрать любую.
+
+\begin{equation}
+\label{form:A_n}
+	A_{n} = \sqrt{a_{n}^2+b_{n}^2}
+\end{equation}
+\begin{equation}
+	\psi_{n} = \arctan\frac{b_{n}}{a_{n}}
+\label{form:psi_n}
+\end{equation}
+
+\newpage
+\subsection{Примеры спектров периодических функций}   
+\subsubsection*{Периодическая последовательность прямоугольных сигналов}
+\ \\
+\ \\
+\ \\
+
+\begin{figure}[!ht]
+\includegraphics[scale=1.5]{pps}
+\caption{Периодическая последовательность прямоугольных импульсов}
+\end{figure}
+
+$V_0$  - амплитуда, $\tau$ - длительность, $\Omega_1 = \frac{2\pi}{T} $ - частота повторения.
+
+Согласно формуле \ref{form:a_n} находим:
+$$ \langle V \rangle = \frac{1}{T}\int\limits_{ -\frac{\tau}{2} } ^ {\frac{\tau}{2} } V_0\,dt = V_0 \frac{\tau}{T}
+$$
+\begin{equation}
+\label{form:app_a_n}
+	a_n = \frac{2}{T}\int\limits_{ -\frac{\tau}{2} } ^ {\frac{\tau}{2} } V_0\cos(n\Omega_1t)\, dt \sim \frac{\sin(x)}{x}
+\end{equation}
+ 
+В силу чётности функции $\forall n \in \mathbb {N} \Rightarrow b_n=0$
+\subsubsection*{Периодическая последовательность цугов}
+Рассмотрим периодическую последовательность {\it{цугов}} гармонического колебания $V_0\cos(\omega_0t)$ c длительностью цуга $\tau$. 
+Тогда согласно \ref{form:a_n}:
+\begin{equation}
+\label{form:cug_a_n}
+a_n = \frac{2}{T}\int\limits_{ -\frac{\tau}{2} } ^ {\frac{\tau}{2} } V_0\cos(\omega_0t)\cdot \cos(n\Omega_1)\, dt
+\end{equation}
+\newpage
+\begin{figure}[ht]
+\includegraphics{cug}
+\caption{Периодическая последовательность цугов}
+\end{figure}
+\subsubsection*{Амплитудно-модулированные колебания}
+
+Рассмотрим гармонические колебания высокой частоты $\omega_0$, амплитуда которых, в свою очередь, меняется по гармоническому закону с частотой $\Omega\ll\omega_0$.
+\begin{equation}
+\label{form:amf(t)_a_n}
+	f(t) = A_0[1+m\cos(\Omega t)]\cos(\omega_0t)
+\end{equation}
+\begin{figure}[ht]
+\includegraphics{am}
+\caption{Гармонические колебания, модулированные по амлитуде}
+\end{figure}
+\ \\
+Коэффициент $m$ - глубина модуляции и по определению:
+\begin{equation}
+\label{form:m}
+	m = \frac{A_{max}-A_{min}}{A_{max}+A_{min}}
+\end{equation}
+
+\begin{figure}[ht]
+\includegraphics{sam}
+\caption{Спектр АМ-колебаний}
+\end{figure}
+
+\newpage
+Спектр АМ-колебаний содержит три составляющих. На Рис.4 колебание с частотой $\omega_0$ является исходным, частота $\omega_0$ - несущей, а колебания с частотами $\omega\pm\Omega$ - являются новыми гармоническими колебаниями с амлитудами $A_{bok} = \frac{A_0m}{2}$
+
+\section{Ход работы}
+\subsection{Исследование спектра периодической последовательности прямоугольных импульсов}
+\includegraphics{scheme_1}
+
+Соберем схему согласно рисунку выше. Получим спектр импульсов с параметрами $f_0=10^3$ Гц; $\tau=25$ мкс; частотный масштаб $m_x=5$ кГц/дел. \\
+\ \\
+\includegraphics[scale=0.5]{1}
+\newpage
+
+Проанализируем, как меняется спектр, в зависимости от $\tau$ и $f_0$.
+\begin{figure}[ht]
+\includegraphics[scale=0.25]{2}
+\includegraphics[scale=0.25]{3}
+\end{figure}
+\ \\
+\par \hspace{3cm} $2\tau$
+\hspace{8cm} $2f_0$
+\ \\
+
+
+Как видно из фотографий, при увеличении $\tau$ ширина спектра $\bigtriangleup\nu$ уменьшается. А при увеличении $f_0$ возрастает амплитуда.
+
+Проведем измерения $\bigtriangleup\nu(\frac{1}{\tau})$.
+\ \\
+\ \\
+\includegraphics[scale=0.5]{graph_1}
+\ \\
+\ \\
+Как видно из графика, функция $\bigtriangleup\nu(\frac{1}{\tau})$ хорошо аппроксимируется линейной, с коэффициентом 1 перед $\frac{1}{\tau}$, что подтверждает справедливость {{\it соотношения неопределенностей}} ($\bigtriangleup\nu\bigtriangleup t\approx1$).
+\ \\
+\ \\
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+	\hline
+	$\tau$, мкс & 25.0 & 50.0 & 75.0 & 100.0 & 125.0 & 150.0 & 175.0 & 200.0 \\
+	\hline
+	$1/ \tau, 10^3$ Гц & 40.0 & 20.0 & 13.3 & 10.0 & 8.0 & 6.7 & 5.7 & 5.0\\
+	\hline
+	$\bigtriangleup\nu$, дел & 7 & 4.5 & 3 & 2 & 1.5 & 1.25 & 1 & 0.75 \\
+	\hline
+	$\bigtriangleup\nu, 10^3$, Гц & 35.0 & 22.5 & 15.0 & 10.0 & 7.5 & 6.3 & 5.0 & 3.8 \\
+	\hline
+
+\end{tabular}
+\ \\
+\ \\
+Абсолютную погрешность измерений $\bigtriangleup\nu$ положим $\sigma_{\bigtriangleup\nu} = \frac{1}{2}$ клетки, то есть 2.5 кГц.
+\newpage
+
+Коэффициент наклона прямой, рассчитанный по методу наименьших квадратов, $k=0.94$
+Для расчета погрешности определения коэффициента наклона прямой воспользуемся формулой:
+$$ \sigma_k = \frac{k_1 - k_2}{\sqrt{n}}  $$ 
+где $k1$ - коэффициент,при котором точек над графиком в два раза меньше, чем под графиком ($k_2$ - наоборот) получим $\sigma_{k}=0.1$
+\ \\
+\ \\
+В итоге:
+$$ k=0.9\pm0.1  $$ 
+\ \\
+Рис. 5: Спектры при разных длительностях импульсов ($\bigtriangleup\nu\bigtriangleup t\approx1$)
+\begin{figure}[ht]
+\includegraphics[scale=0.25]{4}
+\includegraphics[scale=0.25]{5}
+\end{figure}
+
+\par \hspace{2.8cm} $\tau$=50 мкс
+\hspace{6.6cm} $\tau=$100 мкс
+
+\subsection{Исследование спектра периодической последовательности цугов гармонических колебаний}
+
+\includegraphics{scheme_2}
+
+Соберем схему согласно рисунку выше. Получим спектр импульсов с параметрами \newline $\nu_0=25\cdot10^3$ Гц; $\tau=25$ мкс; частотный масштаб $m_x=5$ кГц/дел. 
+
+Рассмотрим, как меняется спектр при изменении $\tau$ и $\nu_0$. Как видно из рисунка (см. Рис. 6 а) и б) ) при увеличении $\tau$ ширина спектра $\bigtriangleup\nu$ уменьшается. Также мы видим, что их максимумы сдвинуты по частоте. Построим график зависимости $\bigtriangleup\nu(f)$. Как видно из графика (см. Рис. 7) зависимость линейная.
+\ \\
+\ \\
+Рис. 6: 
+\begin{figure}[ht]
+\includegraphics[scale=0.25]{6}
+\includegraphics[scale=0.25]{7}
+\end{figure}
+\par \hspace{1.3cm} а) $\tau=$ 50 мкс, $f_0=$ 1 кГц  \hspace{3.6cm} б) $\tau=$ 100 мкс, $f_0=$ 1 кГц
+\begin{figure}[ht]
+\includegraphics[scale=0.2673]{8}
+\hspace{3cm}
+\includegraphics[scale=0.25]{9}
+\end{figure}
+\par
+\par \hspace{0.3cm} в) $\tau=$ 100 мкс, $\nu$= 10 кГц  \hspace{4cm} г) $\tau=$ 100 мкс, $\nu=$ 40 кГц
+\ \\
+
+\ \\
+\ \\
+\begin{tabular}{|c|c|c|c|c|c|}
+	\hline
+	$f$, кГц & 1.0 & 2.0 & 3.0 & 4.0 & 5.0  \\
+	\hline
+	$\bigtriangleup\nu$, дел & 7.0 & 8.0 & 8.5 & 9.0 & 10.0  \\
+	\hline
+	$\bigtriangleup\nu, 10^3$, Гц & 35.0 & 40.0 & 42.5 & 45 & 50  \\
+	\hline
+\end{tabular}
+\ \\
+\ \\
+\ \\
+Абсолютную погрешность измерений $\bigtriangleup\nu$ положим $\sigma_{\bigtriangleup\nu} = \frac{1}{2}$ клетки, то есть 2.5 кГц. Однако график не подтверждает соотношение неопределенностей. Возможно, в процессе эксперимента была допущена ошибка в настройке прибора. Предположение об ошибке в настройке приборов подтверждает линейная зависимость: скорее всего, был выбран неправильный масштаб измерений. 
+
+\newpage
+\begin{figure}[ht]
+\includegraphics[scale=0.5]{graph_2}
+\end{figure} 
+\par \hspace{5cm} Рис.7
+
+\subsection{Исследование спектра гармонических сигналов, модулированных по амлитуде}
+\includegraphics{scheme_3}
+\ \\
+\par Соберем схему согласно рисунку выше и будем измерять глубину модуляции $m$. Чтобы измерить глубину модуляции, измерим $A_{max}$, $A_{min}$ и подставим в формулу \ref{form:m}. Построим график отношения $a_{side}/a_{gen}$ в зависимости от $m$.
+
+Рассчитаем теоретический коэффициент наклона, воспользовавшись формулой:
+\begin{equation}
+\label{form:a/a(m)}
+	f(t)=A_0\cos(\omega_0t)+	\frac{A_0m}{2}\cos(\omega_0+\Omega t)+\frac{A_0m}{2}\cos(\omega_0-\Omega t). 
+\end{equation}
+\newpage
+$a_{gen} = A_0$, $a_{side}= \frac{A_0m}{2} \Rightarrow k_{theory}=0.5$.
+
+В результате эксперимента был получен коэффициент наклона $k=$
+
+Посмотрим, как меняется спектр при $100\%$ глубине модуляции в зависимости от частоты модулирующего сигнала.
+\ \\
+\ \\
+
+\begin{tabular}{|c|c|c|c|c|c|}
+	\hline
+	$2A_{max}$, дел. & 1.8 & 1.1 & 1.3 & 2.6 & 2.8 \\
+	\hline
+	$2A_{min}$, дел. & 1.0 & 0.8 & 0.5 & 0.2 & 0.1  \\
+	\hline
+	$m$ & 0.29 & 0.16 & 0.44 & 0.86 & 0.93 \\
+	\hline
+	$a_{side}$ & 1.0 & 1.5 & 2.5 & 3.0 & 3.0 \\
+	\hline
+	$a_{gen}$ & 7.0 & 6.8 & 7.0 & 7.0 & 6.5 \\
+	\hline
+	$a_{side}/a_{gen}$ & 0.14 & 0.22 & 0.35 & 0.42 & 0.46 \\
+	\hline
+\end{tabular}
+
+\ \\
+\ \\
+Построим график зависимости $a_{side}/a_{gen}(m)$.
+\ \\
+\ \\
+\includegraphics[scale=0.7]{graph_3}
+
+\ \\
+\ \\
+Коэффициент наклона, рассчитанный по методу МНК, $k=0.4$. Рассчитаем погрешность коэффициента наклона тем же методом, что и в пункте {{\bf 2.1}}:
+$$ k = \frac{\langle xy \rangle}{x^2}  \Rightarrow k=0.54$$ 
+
+\newpage
+Погрешность измерения $\sigma_k=\frac{k_1 - k_2}{\sqrt{n}} = 0.1$
+$ \Rightarrow k=0.5\pm0.1$, что хорошо совпадает с теоретическим значением.
+\ \\
+\ \\
+\includegraphics[scale=0.5]{100}
+\par \hspace{4cm} Рис. 8: спектр при 100\% модуляции. 
+
+\end{document} % конец документа

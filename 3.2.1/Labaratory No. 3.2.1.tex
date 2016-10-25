@@ -1,0 +1,284 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[T2A,T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{graphicx}
+\usepackage[hcentering, bindingoffset = 10mm, right = 15 mm, left = 15 mm, top=20mm, bottom = 20 mm]{geometry}
+\usepackage{multirow}
+\usepackage{lipsum}
+\usepackage{amsmath, amstext}
+\usepackage{siunitx}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+\usepackage{adjustbox}
+\usepackage{enumerate, indentfirst, float}
+\usepackage{capt-of, svg}
+\usepackage{icomma}
+
+\newenvironment{bottompar}{\par\vspace*{\fill}}{\clearpage}
+ 
+\begin{document}
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+ 
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE Московский Физико-Технический Институт}\\[1,5cm] % Name of your university/college
+\textsc{\Large Кафедра общей физики}\\[0.5cm] % Major heading such as course name
+\textsc{\large Лабораторная работа \textnumero  3.2.1}\\[0.5cm] % Minor heading such as course title
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule
+\\[0.4cm]
+{ \huge \bfseries Сдвиг фаз в цепи переменного тока}
+\\[0.2cm] % Title of your document
+\HRule
+\\[1.5cm]
+
+
+ 
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}{0.4\textwidth}
+	\begin{flushleft} \large
+		\emph{Автор:}\\
+		Ришат \textsc{Исхаков} \\
+		513 группа
+	\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+	\begin{flushright} \large
+		\emph{Преподаватель:} \\
+		Александр Александрович \textsc{Казимиров} % Supervisor's Name
+	\end{flushright}
+\end{minipage}
+
+\begin{bottompar}
+	\begin{center}
+		\includegraphics[width = 80 mm]{logo.jpg}
+	\end{center}
+	{\large \today}
+
+\end{bottompar}
+\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+
+\section{Цель работы}
+Изучить влияние активного сопротивления, индуктивности и емкости на сдвиг фаз между током и напряжением в цепи переменного тока.
+
+\subsection*{Экспериментальная установка}
+
+
+
+\begin {figure}[H]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{t}
+\end{center}
+\end {figure}
+$$R_L=50.4 \text{ Ом, при $\nu = 10 \text{ кГц}$}$$
+$$L=50 \text{ мГн}$$
+$$r=12.2 \text{ Ом}$$
+$$C=0.5 \text{ мкФ}$$
+$$\nu = 10 \text{ кГц}$$
+
+\subsection*{RC-цепь}
+
+
+Ток, текущий через RC цепочку, пропорционален напряжению на резисторе, и опережает напряжение на конденсаторе по фазе на $\pi/2$. В таком простом случае метод векторных диаграмм даёт простой результат для зависимости сдвига фаз от $R$:
+$$\tg \varphi = \frac{1}{\Omega R C}$$
+\begin {figure}[H]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{rcd}
+\end{center}
+\end {figure}
+
+\subsection*{RL-цепь}
+
+Всё аналогично RC цепочке, только импеданс катушки теперь 
+$$Z_2 = j\omega L,$$
+поэтому ток отстаёт по фазе от напряжения, а рассчётная формула приобретает вид
+$$\tg \varphi = \frac{\omega L}{R_{\sum}}$$
+Теперь к споротивлению калибровочного резистора и резистора $R$ добавится активное сопротивление катушки:
+$$R_{\sum} = R+r+R_L,$$
+где $R_L$ -- активное сопротивление катушки.
+
+\subsection*{RCL-цепь}
+
+Комплексный импеданс RCL-цепочки:
+$$Z=R+j\omega L - \frac{j}{\omega C}.$$
+
+Сдвиг фаз между током и напряжением получим, взяв аргумент $Z$:
+
+$$\tg\varphi = \frac{\omega L - \frac{1}{\omega C}}{R} = Q\frac{\left(\frac{\omega}{\omega_0}\right)^2 - 1}{\frac{\omega}{\omega_0}} = Q\frac{(1+x)^2-1}{1+x} \simeq 2x Q,$$
+где $x = \Delta \omega / \omega_0 = \Delta \nu / \nu_0$, и в последнем переходе пренебрегаем квадратичными по $x$ членами.
+Измерив ширину графика $w=2x$ на высоте $\varphi = \pi / 4\ (\tg\varphi = 1)$, можем непосредственно измерить добротность контура:
+$$Q = \frac{1}{w}$$
+
+\subsection*{Фазовращатель}
+
+\begin {figure}[H]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{phase.png}
+\end{center}
+\end {figure}
+
+
+\begin {figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{diagramphase}
+\end{center}
+\end {figure}
+
+Разность фаз равна $\pi /2$, когда медиана $34$ является и высотой, т.е. когда $\triangle 124$ -- равнобедренный, откуда
+
+\section{Работа и измерения}
+
+\subsection*{RC-цепь}
+
+$$X_1 = \dfrac{1}{2 \pi \nu C} = 31.8$$
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$R, \text{ Ом}$ & $x$ & $x_0$ & $\varphi$ & $\tg \varphi$ & $R_{\Sigma}, \text{ Ом}$ & $1/(R_{\Sigma} \Omega C)$ \\ \hline
+0.0             & 1.9 & 5.0   & 1.2   & 2.5        & 12.2                  & 2.6                   \\ \hline
+3.0             & 1.8 & 5.0   & 1.1   & 2.1        & 15.2                  & 2.1                   \\ \hline
+5.0             & 1.7 & 5.0   & 1.1   & 1.8        & 17.2                  & 1.9                   \\ \hline
+8.0             & 1.6 & 5.0   & 1.0   & 1.6        & 20.2                  & 1.6                   \\ \hline
+10.0            & 1.5 & 5.0   & 0.9   & 1.4        & 22.2                  & 1.4                   \\ \hline
+20.0            & 1.2 & 5.0   & 0.8   & 0.9        & 32.2                  & 1.0                   \\ \hline
+30.0            & 1.0 & 5.0   & 0.6   & 0.7        & 42.2                  & 0.8                   \\ \hline
+40.0            & 0.8 & 5.0   & 0.5   & 0.5        & 52.2                  & 0.6                   \\ \hline
+50.0            & 0.7 & 5.0   & 0.4   & 0.5        & 62.2                  & 0.5                   \\ \hline
+60.0            & 0.6 & 5.0   & 0.4   & 0.4        & 72.2                  & 0.4                   \\ \hline
+80.0            & 0.5 & 5.0   & 0.3   & 0.3        & 92.2                  & 0.3                   \\ \hline
+110.0           & 0.4 & 5.0   & 0.3   & 0.3        & 122.2                 & 0.3                   \\ \hline
+230.0           & 0.2 & 5.0   & 0.1   & 0.1        & 242.2                 & 0.1                   \\ \hline
+\end{tabular}
+\caption{Полученные значения в RC-цепи}
+\end{table}
+
+Найдем погрешности измерения величин:
+$$\sigma_{\tg \varphi} = 
+0.1\pi \sqrt{\left(\dfrac{1}{x_0 \cos^2\left(\dfrac{\pi x}{x_0}\right)}\right)^2 + \left(\dfrac{x}{x_0^2 \cos^2 \left(\dfrac{\pi x}{x_0}\right)}\right)^2} $$
+
+	\begin {figure}[H]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{RC}
+			\caption{График зависимости $\tg \varphi = f[1/ \Omega C R_{\Sigma}]$}
+		\end{center}
+	\end {figure}
+
+\subsection*{RL-цепь}
+$$X_2 = 2 \pi \nu L = 3231.1$$
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$R, \text{ Ом}$ & $x$ & $x_0$ & $\varphi$ & $\tg \varphi$ & $R_{\Sigma}$ & $\Omega L/ R_{\Sigma} $ \\ \hline
+0.0             & 2.4 & 5.0   & 1.5   & 15.9       & 62.6      & 51.6                  \\ \hline
+400.0           & 2.2 & 5.0   & 1.4   & 5.2        & 462.6     & 7.0                   \\ \hline
+800.0           & 2.0 & 5.0   & 1.3   & 3.1        & 862.6     & 3.7                   \\ \hline
+1200.0          & 1.8 & 5.0   & 1.1   & 2.1        & 1262.6    & 2.6                   \\ \hline
+1600.0          & 1.6 & 5.0   & 1.0   & 1.6        & 1662.6    & 1.9                   \\ \hline
+2000.0          & 1.4 & 5.0   & 0.9   & 1.2        & 2062.6    & 1.6                   \\ \hline
+2400.0          & 1.3 & 5.0   & 0.8   & 1.1        & 2462.6    & 1.3                   \\ \hline
+3000.0          & 1.1 & 5.0   & 0.7   & 0.8        & 3062.6    & 1.1                   \\ \hline
+\end{tabular}
+\caption{Полученные значения в RL-цепи}
+\end{table}
+
+\begin {figure}[H]
+	\begin{center}
+		\includegraphics[width=0.65\textwidth]{RL}
+		\caption{График зависимости $\tg \varphi = f[\Omega L / R_{\Sigma}]$}
+	\end{center}
+\end {figure}
+
+\subsection*{RCL-цепь}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Сопротивление & $\nu, \text{кГц}$ & $x_0$ & $x$ & $\varphi$ & $nu\nu_0$ \\ \hline
+\multirow{11}{*}{$R = 0 \; \text{Ом}$}   & 1020.0            & 2.4   & 0.2 & 0.26   & 1.01      \\ \cline{2-6} 
+                                         & 1040.0            & 2.0   & 0.4 & 0.55   & 1.03      \\ \cline{2-6} 
+                                         & 1060.0            & 2.0   & 0.4 & 0.63   & 1.05      \\ \cline{2-6} 
+                                         & 1080.0            & 2.2   & 0.6 & 0.86   & 1.07      \\ \cline{2-6} 
+                                         & 1100.0            & 2.0   & 0.6 & 0.94   & 1.09      \\ \cline{2-6} 
+                                         & 1200.0            & 1.8   & 0.7 & 1.22   & 1.19      \\ \cline{2-6} 
+                                         & 990.0             & 2.0   & 0.2 & 0.31   & 0.98      \\ \cline{2-6} 
+                                         & 960.0             & 2.0   & 0.4 & 0.63   & 0.95      \\ \cline{2-6} 
+                                         & 930.0             & 2.4   & 0.6 & 0.79   & 0.92      \\ \cline{2-6} 
+                                         & 900.0             & 2.0   & 0.6 & 0.94   & 0.89      \\ \cline{2-6} 
+                                         & 850.0             & 2.0   & 0.8 & 1.26   & 0.84      \\ \hline
+\multirow{13}{*}{$R = 100 \; \text{Ом}$} & 1020.0            & 4.0   & 0.1 & 0.08   & 1.01      \\ \cline{2-6} 
+                                         & 1040.0            & 4.0   & 0.2 & 0.16   & 1.03      \\ \cline{2-6} 
+                                         & 1060.0            & 4.0   & 0.3 & 0.24   & 1.05      \\ \cline{2-6} 
+                                         & 1080.0            & 4.0   & 0.4 & 0.31   & 1.07      \\ \cline{2-6} 
+                                         & 1100.0            & 4.0   & 0.5 & 0.39   & 1.09      \\ \cline{2-6} 
+                                         & 1160.0            & 4.0   & 0.7 & 0.55   & 1.15      \\ \cline{2-6} 
+                                         & 1200.0            & 4.1   & 0.9 & 0.69   & 1.19      \\ \cline{2-6} 
+                                         & 990.0             & 4.0   & 0.2 & 0.12   & 0.98      \\ \cline{2-6} 
+                                         & 960.0             & 3.4   & 0.2 & 0.18   & 0.95      \\ \cline{2-6} 
+                                         & 950.0             & 4.0   & 0.3 & 0.24   & 0.94      \\ \cline{2-6} 
+                                         & 930.0             & 3.0   & 0.4 & 0.42   & 0.92      \\ \cline{2-6} 
+                                         & 900.0             & 4.0   & 0.6 & 0.47   & 0.89      \\ \cline{2-6} 
+                                         & 850.0             & 4.0   & 0.8 & 0.63   & 0.84      \\ \hline
+\end{tabular}
+\caption{Полученные значения при изучении зависимости фазы от $\dfrac{\nu}{\nu_0}$}
+\end{table}
+
+$C = 0.5 \text{ мкФ},$
+$L =50 \text{ мГн},$
+$\nu_0 = 1006.5 \text{ кГц}$
+
+\begin {figure}[H]
+	\begin{center}
+		\includegraphics[width=0.8\textwidth]{R0}
+		\caption{График зависимости $\varphi = f[\nu/\nu_0] \text{ для $R = 0$ Ом}$}
+	\end{center}
+\end {figure}
+
+\begin {figure}[H]
+	\begin{center}
+		\includegraphics[width=0.8\textwidth]{R100}
+		\caption{График зависимости $\varphi = f[\nu/\nu_0] \text{ для $R = 100$ Ом}$}
+	\end{center}
+\end {figure}
+
+Из графика $R = 0$ Ом добротность равна:
+$$Q_{0}=7 \pm1$$
+
+Из графика $R = 100$ Ом добротность равна:
+$$Q_{100}=2 \pm1$$
+
+Можно рассчитать её, выразив через параметры цепочки:
+$$Q = \frac{1}{R} \sqrt{\frac{L}{C}}$$
+$$Q_{\text{теор, 0}} = 7.4$$
+$$Q_{\text{теор, 100}} = 2.5$$
+
+\section{Вывод}
+
+На данной лабораторной работе была изучена зависимость сдвига фаз между током и напряжением от сопротивления в цепи в RC, RL, контурах. Была определена добротность колебательного контура, снята зависимость сдвига фаз от частоты вблизи резонанса. 
+
+Для RC контура практический график довольно точно совпадает с теоретическим, однако в RL контуре значения отличаются на 20\%. Ошибка связана с неправильной установкой частоты (10 кГц вместо 1 кГц), вследствие чего изменилось и реактивное сопротивление цепи. Точнее говоря, оно стало настолько большим, что диапазон изменения $\tg \varphi$ повысился и сильно увеличилась погрешность измерения.
+
+После изменения частоты на 1 кГц при измерении добротности колебательного контура получились достаточно точные значения, теоретические и практические совпали с учетом погрешности.
+
+\end{document}

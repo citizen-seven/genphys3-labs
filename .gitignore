@@ -5,3 +5,5 @@
 *.gz
 *.xlsx
 *.docx
+*.tex.bak
+.DS_store
