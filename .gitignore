@@ -2,7 +2,7 @@
 *.log
 *.zip
 *.mppz
-*.div
+*.dvi
 *.gz
 *.xlsx
 *.docx
