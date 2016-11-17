@@ -1,3 +1,4 @@
+%TeX
 *.aux
 *.log
 *.zip
@@ -6,5 +7,6 @@
 *.gz
 *.xlsx
 *.docx
-*.tex.bak
+*.out
+*.bak
 .DS_store

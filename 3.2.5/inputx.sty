@@ -1,0 +1,92 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Author: Blackstev
+% Email: blackstev@hotmail.com
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ProvidesPackage{inputx}[2011/06/28 v1.0 inputx style for better file includings]
+\typeout{2011/06/28 v1.0 inputx style for better file includings}
+
+%{{{    use package
+%}}}
+
+\makeatletter
+
+\newif\ifBreak
+\Breakfalse
+
+\gdef\inputpaths#1{\gdef\@inputpaths{#1}}
+\gdef\@inputpaths{}
+
+\newcommand{\forAllInputpaths}[2][\path]{\@for#1:=\@inputpaths\do{#2}}
+
+\gdef\printinputpaths{
+    \forAllInputpaths[\path]{Path: \path}
+}
+
+
+
+%{{{ redefine include
+\global\let\old@include\include
+\gdef\includex#1{
+    \IfFileExists{#1.tex}
+    {
+        \old@include{#1}
+    }
+    {
+        \forAllInputpaths[\path]
+        {
+            \ifBreak
+            \else
+                \IfFileExists{\path/#1.tex}
+                {
+                    \old@include{\path/#1}
+                    \Breaktrue
+                }
+                {}
+            \fi
+        }
+        \ifBreak
+        \else
+            % \PackageError{includex}{'#1' can not be resolved}{'#1' can not be resolved. It is not in \@includepaths}
+            \old@include{#1}
+        \fi
+        \Breakfalse
+    }
+}
+\gdef\include#1{\includex{#1}}
+%}}}
+%{{{ redefine input
+% original definition of input: \def\input{\@ifnextchar\bgroup\@iinput\@@input}
+\global\let\old@input\@@input
+\gdef\@@input#1{\old@input#1}
+\gdef\inputx#1{
+      \IfFileExists{#1.tex}
+      {
+          \@@input{#1}%
+      }
+    {
+        \forAllInputpaths[\path]
+        {
+            \ifBreak
+            \else
+                \IfFileExists{\path/#1.tex}
+                {
+                    \@@input{\path/#1}
+                    \Breaktrue
+                }
+                {}
+            \fi
+        }
+        \ifBreak
+        \else
+            %\PackageError{includex}{'#1' can not be resolved}{'#1' can not be resolved. It is not in \@includepaths}
+            \@@input{#1}
+        \fi
+        \Breakfalse
+    }
+}
+\def\input{\@ifnextchar\bgroup\inputx\@@input}
+%}}}
+\makeatother
