@@ -37,6 +37,7 @@
 \RequirePackage{graphicx}
 \graphicspath{{img/}}
 \RequirePackage{color}
+\RequirePackage{float}
 \RequirePackage{wrapfig}
 \newcommand{\tw}{\textwidth}
 \newcommand{\lw}{\linewidth}
@@ -59,4 +60,4 @@
 \newcommand{\ef}{\mathscr{E}}
 
 
-\input{units.inc}
+\input{units.cls}

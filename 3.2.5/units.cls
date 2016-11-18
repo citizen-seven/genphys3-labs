@@ -31,6 +31,7 @@
 
 %% Некоторые производные единицы
 % Механика
+\newcommand{\hz}{\text{Гц}}
 \newcommand{\cm}{\text{см}}
 \newcommand{\mm}{\text{мм}}
 \newcommand{\km}{\text{км}}
