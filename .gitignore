@@ -5,8 +5,8 @@
 *.mppz
 *.dvi
 *.gz
-*.xlsx
 *.docx
 *.out
 *.bak
+Ign_*
 .DS_store
