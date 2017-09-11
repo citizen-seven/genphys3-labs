@@ -14,6 +14,7 @@
 \usepackage{enumerate, indentfirst, float}
 \usepackage{capt-of, svg}
 \usepackage{icomma}
+\usepackage{wrapfig}
 
 \newenvironment{bottompar}{\par\vspace*{\fill}}{\clearpage}
  
@@ -81,12 +82,9 @@
 \subsection*{Экспериментальная установка}
 
 
-
-\begin {figure}[H]
-\begin{center}
-\includegraphics[width=0.9\textwidth]{t}
-\end{center}
-\end {figure}
+\begin{wrapfigure}{L}{42mm}
+	\includegraphics[width=42mm]{station.png}
+\end{wrapfigure}
 $$R_L=50.4 \text{ Ом, при $\nu = 10 \text{ кГц}$}$$
 $$L=50 \text{ мГн}$$
 $$r=12.2 \text{ Ом}$$
